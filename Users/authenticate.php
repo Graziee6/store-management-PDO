@@ -11,14 +11,14 @@ echo  "Username and Password are required";
 }else{
 $hash=hash("SHA512",$user_password);
 $userId=$currentPassword=$roleName=$roleId="";
-$query=mysqli_query($connection, "SELECT * FROM stk_users where username='$username'");
-while($row=mysqli_fetch_assoc($query)){
+$query=$connection->query("SELECT * FROM stk_users where username='$username'");
+foreach($query as $row){
     $currentPassword=$row["passwd"];
     $userId=$row["userId"];
     $roleId=$row["roleId"];   
 }
-$roleQuery=mysqli_query($connection,"SELECT role FROM roles where roleId='$roleId' ");
-while($rolesResult=mysqli_fetch_assoc($roleQuery)){
+$roleQuery=$connection->query("SELECT role FROM roles where roleId='$roleId' ");
+foreach( $roleQuery as $rolesResult){
     $roleName=$rolesResult["role"];
 }
 if(!mysqli_num_rows($query)){
