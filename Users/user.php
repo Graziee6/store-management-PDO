@@ -1,11 +1,10 @@
 <?php
 session_start();
-if(!$_SESSION['userId']){
+if (!$_SESSION['userId']) {
     header("Location:login.php");
- }
-elseif ($_SESSION['roleName']!="Administrator") {
+} elseif ($_SESSION['roleName'] != "Administrator") {
     header("Location:norights.php");
-} 
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,13 +103,6 @@ elseif ($_SESSION['roleName']!="Administrator") {
 </head>
 <?php
 require "./../connection.php";
-try {
-    $countries = "SELECT * FROM countries";
-    $connection->exec($countries);
-} catch (PDOException $e) {
-    echo $countries . "<br>" . $e->getMessage();
-}
-$role="SELECT * FROM roles"
 ?>
 <body>
 <header>
@@ -123,7 +115,7 @@ $role="SELECT * FROM roles"
                 <li><a href="./../Incoming_products/displayInventory.php">Display inventories</a></li>
                 <li><a href="./displayOutgoing.php">Display outgoing products</a></li>
                 <li><a href="./../Outgoing_products/outgoingProd.php">Create outgoing</a></li>
-            </ul>  
+            </ul>
         </nav>
     </header>
     <div class="main">
@@ -144,21 +136,25 @@ $role="SELECT * FROM roles"
             <select name="role" id="role" class="fields">
             <option value="0">What's your role</option>
                 <?php
-                    while($row=mysqli_fetch_array($roleExecute)){?>
+                $role = "SELECT * FROM roles";
+                $roleExecute=$connection->query($role);
+foreach($roleExecute as $row) {?>
                         <option value="<?=$row['roleId']?>"><?=$row["role"]?></option>
                     <?php }
-                    if(!$row){
-                        echo mysqli_error();
-                    }
-                ?>
+if (!$row) {
+        echo mysqli_error();
+}
+?>
             </select>
             <label for="nation" class="labels">Nationality</label>
             <select name="nationality" id="nation" class="fields">
                 <option value="0">Select your nationality</option>
             <?php
-                while($rows = mysqli_fetch_array($execute)){?>
+$countries = "SELECT * FROM countries";
+$execute = $connection->query($countries);
+foreach ($execute as $rows) {?>
                 <option value="<?=$rows['countryID']?>"><?=$rows['countryName']?></option>
-                <?php } ?>
+                <?php }?>
             </select><br>
             <label for="username" class="labels" accesskey='u'>Username</label>
             <input type="text" name="username" class="fields" id="username" placeholder="Enter your username"><br>

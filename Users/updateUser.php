@@ -174,8 +174,8 @@
     include './../connection.php';
     $user_id=$_GET["Id"];
     $sql="select * from stk_users where userId=$user_id;";
-    $query=mysqli_query($connection,$sql);
-    while($row= mysqli_fetch_assoc($query)){?>
+    $query=$connection->query($sql);
+    foreach($query as $row){?>
     <form action="userUpdate.php" method="POST" class="form">
             <h2>Update account</h2>
             <div>
@@ -218,9 +218,9 @@
                 <select name="nationality" id="nationality"  value="<?php echo $row['nationality']?>">
                     <option value="">Select Nationality...</option>
                   <?php
-                  $countriesQuery=mysqli_query($connection,"select * from countries");
+                  $countriesQuery=$connection->query("select * from countries");
                   if($countriesQuery){
-                    while ($row=mysqli_fetch_assoc($countriesQuery)) {?>
+                    foreach ($countriesQuery as $row) {?>
                        <option value="<?php echo $row["countryID"] ?>"><?=$row["countryName"]?></option>
                         <?php }}?>
                 </select>

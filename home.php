@@ -3,7 +3,8 @@ session_start();
 if(!$_SESSION['userId']){
     header("Location:./Users/login.php");
  }
-$ipAddr= gethostbyname($_SERVER['HOST_ADDR']);
+$hostAdress='HOST_ADDR'; 
+$ipAddr= gethostbyname($_SERVER[$hostAdress]);
 $_SESSION['ipAddr']=$ipAddr;
 $MAC = exec('getmac');
 $MAC = strtok($MAC, ' ');
@@ -78,7 +79,7 @@ $user_browser   = getBrowser();
 include 'connection.php';
 $userId=$_SESSION['userId'];
 $sqlInsert = "INSERT INTO userdeviceinfo(userId, macAddress, ipAddress , os ,browser) VALUES('$userId','$MAC','$ipAddr','$user_os', '$user_browser')";
-$execute = mysqli_query($connection, $sqlInsert);
+$execute = $connection->query($sqlInsert);
 ?>
 <!DOCTYPE html>
 <html lang="en">

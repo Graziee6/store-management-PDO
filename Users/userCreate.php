@@ -10,7 +10,7 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $cpass = $_POST['cpassword'];
 require "./../connection.php";
-if ($password !== $cpass) {
+if ($password == $cpass) {
     echo "Passwords do not match";
 } else {
     try {

@@ -9,7 +9,7 @@ if(!$_SESSION['userId']){
   
 require "./../connection.php";
 $Id = $_GET["Id"];
-$deleteUser = mysqli_query($connection, "DELETE FROM stk_users WHERE userId='$Id'");
+$deleteUser=$connection->query("DELETE FROM stk_users WHERE userId='$Id'");
 if(!$deleteUser){
     echo "Couldn't delete".mysqli_error($connection);
 }
