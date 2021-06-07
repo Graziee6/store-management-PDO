@@ -71,10 +71,9 @@ if(!$_SESSION['userId']){
 <?php
 require "./../connection.php";
 $Id = $_GET["Id"];
-$execUpdateQ = mysqli_query($connection, "SELECT * FROM stk_products WHERE productId='$Id'");
-$row = mysqli_fetch_assoc($execUpdateQ);
+$execUpdateQ =$connection->query("SELECT * FROM stk_products WHERE productId='$Id'");
+foreach($execUpdateQ as $row){
 ?>
-
 <body>
     <div class="main">
         <h2>Update product</h2>
@@ -91,5 +90,6 @@ $row = mysqli_fetch_assoc($execUpdateQ);
             <input type="submit" value="Update product"> 
         </form>
     </div>
+    <?php }?>
 </body>  
 </html>

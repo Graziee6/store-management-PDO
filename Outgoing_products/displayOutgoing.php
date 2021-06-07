@@ -1,8 +1,8 @@
 <?php
 require "./../connection.php";
 // $Id = $_GET["Id"];
-$displayOutgoing = mysqli_query($connection, "SELECT pr.product_Name, ou.quantity, ou.added_date FROM stk_products pr, stk_outgoing ou WHERE pr.productId=ou.productId");
 // $row = mysqli_fetch_assoc($displayOutgoing);
+$displayOutgoing=$connection->query("SELECT pr.product_Name, ou.quantity, ou.added_date FROM stk_products pr, stk_outgoing ou WHERE pr.productId=ou.productId");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +77,7 @@ $displayOutgoing = mysqli_query($connection, "SELECT pr.product_Name, ou.quantit
     </thead>
 
     <tbody>
-    <?php while($row=mysqli_fetch_assoc($displayOutgoing)){?>
+    <?php foreach($displayOutgoing as $row){?>
         <tr>
             <td><?=$row["product_Name"]?></td>
             <td><?=$row["quantity"]?></td>

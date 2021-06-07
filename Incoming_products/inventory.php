@@ -5,7 +5,7 @@ if(!$_SESSION['userId']){
  }
 require "./../connection.php";
 // $Id = $_GET["Id"];
-$product = mysqli_query($connection, "SELECT * FROM stk_products");
+$product =$connection->query("SELECT * FROM stk_products");
 ?>
 <style>
   
@@ -126,7 +126,7 @@ $product = mysqli_query($connection, "SELECT * FROM stk_products");
     <label class="labels" for="name">Product name</label>
     <select name="productName" id="name">
         <?php
-        while($products=mysqli_fetch_assoc($product)){
+        foreach($product as $products){
             ?>
             <option value="<?=$products["productId"]?>"><?=$products["product_Name"]?></option>
         <?php }?>

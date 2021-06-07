@@ -5,7 +5,7 @@ $Id = $_POST["Id"];
                 $newBrand = $_POST['brand'];
                 $newSupplier = $_POST['supplier'];
                 $newPhone = $_POST['telephone'];
-                $updateExec = mysqli_query($connection, "UPDATE stk_products SET product_Name='$newName', brand='$newBrand', supplier_phone='$newPhone', supplier='$newSupplier' WHERE productId='$Id'");
+                $updateExec = $connection->query("UPDATE stk_products SET product_Name='$newName', brand='$newBrand', supplier_phone='$newPhone', supplier='$newSupplier' WHERE productId='$Id'");
                 if (!$updateExec) {
                     echo "Couldn't update product".mysqli_error();
                 }

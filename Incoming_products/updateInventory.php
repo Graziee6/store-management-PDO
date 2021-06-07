@@ -5,7 +5,7 @@ if(!$_SESSION['userId']){
  }
 require "./../connection.php";
 $Id = $_GET["Id"];
-$product = mysqli_query($connection, "SELECT * FROM stk_products, stk_inventory WHERE productId='$Id'");
+$product =$connection->query("SELECT * FROM stk_products, stk_inventory WHERE productId='$Id'");
 ?>
 <style>
   
@@ -73,7 +73,7 @@ $product = mysqli_query($connection, "SELECT * FROM stk_products, stk_inventory 
     <form action="./inventUpdate.php?qty=<?=$Id?>" method="POST">
     <label class="labels" for="name">Product name</label>
     <?php
-    while($row= mysqli_fetch_assoc($product)){
+    foreach($product as $row){
         $qty = $row["quantity"];
     ?>
     <input type="text" name="productName" id="name" value="<?=$row['product_Name']?>">

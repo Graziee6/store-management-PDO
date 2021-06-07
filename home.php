@@ -13,7 +13,6 @@ $browser = get_browser();
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
     global $user_agent;
-
     $os_platform  = "Unknown OS Platform";
 
     $os_array     = array(

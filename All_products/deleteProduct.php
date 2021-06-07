@@ -19,7 +19,7 @@
 <?php
 require "./../connection.php";
 $id = $_GET['Id'];
-$deleteQuery = mysqli_query($connection, "DELETE FROM stk_products WHERE productId='$id'");
+$deleteQuery = $connection->query("DELETE FROM stk_products WHERE productId='$id'");
 if(!$deleteQuery){
     echo "Couldn't delete".mysqli_error();
 }

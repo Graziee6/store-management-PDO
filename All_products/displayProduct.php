@@ -5,7 +5,7 @@ if(!$_SESSION['userId']){
  }
 require "./../connection.php";
     $selectInventory = "SELECT pr.productId, pr.product_Name, pr.brand, pr.supplier, pr.supplier_phone FROM stk_products pr";
-    $fetchInventory = mysqli_query($connection, $selectInventory);?>
+    $fetchInventory = $connection->query($selectInventory);?>
     <head>
         <style>
         *{
@@ -96,7 +96,7 @@ require "./../connection.php";
     </tr>
     
     <?php
-    while($rows = mysqli_fetch_assoc($fetchInventory)){
+    foreach($fetchInventory as $rows){
         $id = $rows["productId"];
         ?>
         <tr>

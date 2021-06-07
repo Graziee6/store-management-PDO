@@ -88,7 +88,7 @@
 <?php
 require "./../connection.php";
 // $Id = $_GET["Id"];
-$query = mysqli_query($connection, "SELECT * FROM stk_products");
+$query = $connection->query("SELECT * FROM stk_products");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +118,7 @@ $query = mysqli_query($connection, "SELECT * FROM stk_products");
     <label class="labels" for="name">Product name</label>
     <select name="productName" id="name">
     <?php
-    while ($row = mysqli_fetch_assoc($query)){?>
+    foreach ($query as $row){?>
     <option value="<?=$row['productId']?>" required><?=$row['product_Name']?></option>
     <?php }?>
     </select>

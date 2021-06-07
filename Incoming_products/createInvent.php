@@ -13,7 +13,7 @@ $userId=$_SESSION['userId'];
 require "./../connection.php";
 $qty=$_POST["quantity"];
 $id=$_POST["productName"];
-$query = mysqli_query($connection, "INSERT INTO stk_inventory(quantity, productId,userId) VALUES('$qty', '$id','$userId')");
+$query = $connection->query("INSERT INTO stk_inventory(quantity, productId,userId) VALUES('$qty', '$id','$userId')");
 
 if(!$query){
     echo "Couldn't save inventory".mysqli_error();
